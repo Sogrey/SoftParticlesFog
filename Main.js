@@ -41,7 +41,7 @@ function init() {
 	controls = new THREE.OrbitControls(camera0);
 
 	// Textures
-	smokeTexture = textureLoader.load('./img/smokeBig_64.png');
+	smokeTexture = textureLoader.load('./img/smokebig_64.png');
 
 	// Lights
 	var ambientL = new THREE.AmbientLight(0xffffff, 0.3);
