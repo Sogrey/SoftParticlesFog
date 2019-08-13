@@ -41,7 +41,7 @@ function init() {
 	controls = new THREE.OrbitControls(camera0);
 
 	// Textures
-	smokeTexture = textureLoader.load('img/smokeBig-64.png');
+	smokeTexture = textureLoader.load('./img/smokeBig-64.png');
 
 	// Lights
 	var ambientL = new THREE.AmbientLight(0xffffff, 0.3);
@@ -129,7 +129,7 @@ function initParticles() {
 	}
 
 	smokeGeo.addAttribute('position', new THREE.Float32BufferAttribute(posArr, 3));
-	smokeGeo.addAttribute('color', new THREE.Float32BufferAttribute(posArr, 3));
+	// smokeGeo.addAttribute('color', new THREE.Float32BufferAttribute(posArr, 3));
 
 	var softParticlesMaterial = new THREE.ShaderMaterial({
 		defines: Object.assign({}, softParticlesShader.defines),
