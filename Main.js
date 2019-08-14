@@ -49,7 +49,6 @@ function init() {
 	dirLight.position.set(12, 50, 15);
 	scene0.add(ambientL, dirLight);
 
-
 	createStartingMesh();
 	initParticles();
 	initPostProcessing();
@@ -116,20 +115,20 @@ function initParticles() {
 		spreadZ = 18; // 18 4 18
 	var origin = new THREE.Vector3(0, 1, 0); // 0 1 0
 
-	var posArr = [];
+	var positions = [];
 	var colors = [];
 	for (var i = 0; i < numOfParticles; i++) {
 		var x = Math.random() * spreadX - spreadX / 2.0 + origin.x;
 		var y = Math.random() * spreadY - spreadY / 2.0 + origin.y;
 		var z = Math.random() * spreadZ - spreadZ / 2.0 + origin.z;
 
-		posArr.push(x, y, z);
+		positions.push(x, y, z);
 
-		colors.push(Math.random() * 255, Math.random() * 255, Math.random() * 255);
+		colors.push(Math.random() , Math.random(), Math.random());
 	}
 
-	smokeGeo.addAttribute('position', new THREE.Float32BufferAttribute(posArr, 3));
-	// smokeGeo.addAttribute('color', new THREE.Float32BufferAttribute(posArr, 3));
+	smokeGeo.addAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+	smokeGeo.addAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
 	var softParticlesMaterial = new THREE.ShaderMaterial({
 		defines: Object.assign({}, softParticlesShader.defines),
@@ -178,12 +177,12 @@ function initPostProcessing() {
 
 	// Passes
 	var renderPass = new THREE.RenderPass(scene0, camera0);
-	var fxaaPass = new THREE.ShaderPass(THREE.FXAAShader);
+	var shaderPass = new THREE.ShaderPass(THREE.FXAAShader);
 
 	composer.addPass(renderPass);
-	composer.addPass(fxaaPass);
+	composer.addPass(shaderPass);
 
-	fxaaPass.renderToScreen = true;
+	shaderPass.renderToScreen = true;
 }
 
 function onWindowResize() {
